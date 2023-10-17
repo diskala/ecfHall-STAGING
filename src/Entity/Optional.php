@@ -2,30 +2,30 @@
 
 namespace App\Entity;
 
-use App\Repository\OptionRepository;
+use App\Repository\OptionalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OptionRepository::class)]
-class Option
+#[ORM\Entity(repositoryClass: OptionalRepository::class)]
+class Optional
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'options')]
+    #[ORM\ManyToOne(inversedBy: 'optionals')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeOption $type = null;
 
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Room::class, mappedBy: 'options')]
+    #[ORM\ManyToMany(targetEntity: Room::class, inversedBy: 'optionals')]
     private Collection $rooms;
 
     public function __construct()
@@ -86,7 +86,6 @@ class Option
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms->add($room);
-            $room->addOption($this);
         }
 
         return $this;
@@ -94,9 +93,7 @@ class Option
 
     public function removeRoom(Room $room): static
     {
-        if ($this->rooms->removeElement($room)) {
-            $room->removeOption($this);
-        }
+        $this->rooms->removeElement($room);
 
         return $this;
     }

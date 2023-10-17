@@ -30,16 +30,19 @@ class Room
     #[ORM\Column]
     private ?bool $isRentable = null;
 
-    #[ORM\ManyToMany(targetEntity: Option::class, inversedBy: 'rooms')]
-    private Collection $options;
-
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class)]
     private Collection $bookings;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
+    #[ORM\ManyToMany(targetEntity: Optional::class, mappedBy: 'rooms')]
+    private Collection $optionals;
+
     public function __construct()
     {
-        $this->options = new ArrayCollection();
         $this->bookings = new ArrayCollection();
+        $this->optionals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,29 +110,6 @@ class Room
         return $this;
     }
 
-    /**
-     * @return Collection<int, Option>
-     */
-    public function getOptions(): Collection
-    {
-        return $this->options;
-    }
-
-    public function addOption(Option $option): static
-    {
-        if (!$this->options->contains($option)) {
-            $this->options->add($option);
-        }
-
-        return $this;
-    }
-
-    public function removeOption(Option $option): static
-    {
-        $this->options->removeElement($option);
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Booking>
@@ -164,5 +144,44 @@ class Room
     public function __toString(): string
     {
         return $this->name ?? '';
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): static
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Optional>
+     */
+    public function getOptionals(): Collection
+    {
+        return $this->optionals;
+    }
+
+    public function addOptional(Optional $optional): static
+    {
+        if (!$this->optionals->contains($optional)) {
+            $this->optionals->add($optional);
+            $optional->addRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOptional(Optional $optional): static
+    {
+        if ($this->optionals->removeElement($optional)) {
+            $optional->removeRoom($this);
+        }
+
+        return $this;
     }
 }
