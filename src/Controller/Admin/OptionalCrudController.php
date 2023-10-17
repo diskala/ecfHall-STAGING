@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Option;
+use App\Entity\Optional;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class OptionCrudController extends AbstractCrudController
+class OptionalCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Option::class;
+        return Optional::class;
     }
 
     /*

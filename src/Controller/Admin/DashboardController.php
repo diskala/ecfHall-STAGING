@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Room;
-use App\Entity\Option;
 use App\Entity\Status;
 use App\Entity\Booking;
+use App\Entity\Optional;
 use App\Entity\EventType;
 use App\Entity\TypeOption;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Salle', 'fas fa-people-roof', Room::class);
         yield MenuItem::linkToCrud('Evènement', 'fas fa-font-awesome', EventType::class);
         yield MenuItem::linkToCrud('Type d\'option', 'fas fa-filter', TypeOption::class);
-        yield MenuItem::linkToCrud('Option', 'fas fa-plus-minus', Option::class);
+        yield MenuItem::linkToCrud('Option', 'fas fa-plus-minus', Optional::class);
         yield MenuItem::linkToCrud('Statut', 'fas fa-hourglass', Status::class);
     }
 }
