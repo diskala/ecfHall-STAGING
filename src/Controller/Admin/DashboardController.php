@@ -2,11 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use App\Entity\Room;
+use App\Entity\Option;
+use App\Entity\Status;
+use App\Entity\Booking;
+use App\Entity\EventType;
+use App\Entity\TypeOption;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -35,12 +41,17 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('EcfHall');
+        -> setTitle('<img src="/images/logo.png">');   
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::linkToCrud('Réservation', 'fas fa-calendar', Booking::class);
+        yield MenuItem::linkToCrud('Salle', 'fas fa-people-roof', Room::class);
+        yield MenuItem::linkToCrud('Evènement', 'fas fa-font-awesome', EventType::class);
+        yield MenuItem::linkToCrud('Type d\'option', 'fas fa-filter', TypeOption::class);
+        yield MenuItem::linkToCrud('Option', 'fas fa-plus-minus', Option::class);
+        yield MenuItem::linkToCrud('Statut', 'fas fa-hourglass', Status::class);
     }
 }
