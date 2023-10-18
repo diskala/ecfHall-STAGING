@@ -8,6 +8,7 @@ use App\Entity\Booking;
 use App\Entity\Optional;
 use App\Entity\EventType;
 use App\Entity\TypeOption;
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -49,6 +50,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Réservation', 'fas fa-calendar', Booking::class);
         yield MenuItem::linkToCrud('Salle', 'fas fa-people-roof', Room::class);
+        yield MenuItem::linkToCrud('Client', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Evènement', 'fas fa-font-awesome', EventType::class);
         yield MenuItem::linkToCrud('Type d\'option', 'fas fa-filter', TypeOption::class);
         yield MenuItem::linkToCrud('Option', 'fas fa-plus-minus', Optional::class);
