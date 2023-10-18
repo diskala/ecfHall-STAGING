@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Room;
+use App\Entity\User;
 use App\Entity\Status;
 use App\Entity\Booking;
 use App\Entity\Optional;
@@ -134,6 +135,31 @@ class AppFixtures extends Fixture
                $manager->persist($status);
            }
    
+
+           // On crée un tableau vide qui contiendra tous les objets User créés ici
+              $objectUsers = [];
+            
+                // On boucle sur 20 éléments pour créer 20 objets User
+                // et les ajouter au tableau $objectUsers
+                // puis on persiste chaque objet User
+                for ($i=0; $i < 10; $i++) { 
+                    $user = new User();
+                    $user->setEmail($faker->email());
+                    $user->setPassword('$2y$13$focFB/V9Eus4uhQ6rw42deLwG.Db9aDlPjH3evnAwViSbBtHw3Fmu');
+                    if($i == 7){
+                        $user->setRoles(['ROLE_ADMIN']);
+                    }else{
+                        $user->setRoles(['ROLE_USER']);
+                    }                   
+                    $user->setAddress($faker->address());
+                    $user->setName($faker->name());
+                    $user->setPhone($faker->phoneNumber());
+                    $user->setSerial($faker->siret());
+                    $objectUsers[] = $user;
+                    $manager->persist($user);
+                }
+
+
            // On crée un tableau vide qui contiendra tous les objets Booking créés ici
            $objectBookings = [];
    
@@ -143,6 +169,7 @@ class AppFixtures extends Fixture
    
            for ($i=0; $i < 20; $i++) { 
                $booking = new Booking();
+               $booking->setUser($objectUsers[$faker->numberBetween(0, count($objectUsers) - 1)]);
                $booking->setEventType($objectEventTypes[$faker->numberBetween(0, count($objectEventTypes) - 1)]);
                $booking->setStatus($objectStatus[$faker->numberBetween(0, count($objectStatus) - 1)]);
                $booking->setStartDate($faker->dateTimeBetween('+1 days', '+5 days'));
