@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div style="background-image: url('https://plus.unsplash.com/premium_photo-1661928260943-4aa36c5e1acc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2488'); background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Inscrivez-vous</h1>
+
+                    {{ form_errors(registrationForm) }}
+
+                    {{ form_start(registrationForm, {'attr': {'class': 'mt-4'}}) }}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            {{ form_row(registrationForm.email, {
+                                'attr': {'class': 'form-control', 'placeholder': 'Email'}
+                            }) }}
+                        </div>
+                         <div class="col-md-6 mb-3">
+                            {{ form_row(registrationForm.name, {
+                                'attr': {'class': 'form-control', 'placeholder': 'Nom de l\'organisation'}
+                            }) }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            {{ form_row(registrationForm.plainPassword, {
+                                'label': 'Mot de passe',
+                                'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}
+                            }) }}
+                        </div>
+                <div class="col-md-6 mb-3">
+                            {{ form_row(registrationForm.address, {
+                                'attr': {'class': 'form-control', 'placeholder': 'Adresse'}
+                            }) }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{ form_row(registrationForm.phone, {
+                                'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}
+                            }) }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{ form_row(registrationForm.serial, {
+                                'attr': {'class': 'form-control', 'placeholder': 'Immatriculation'}
+                            }) }}
+                        </div>
+                    </div>
+                    <div class="form-check mb-3">
+                        {{ form_row(registrationForm.agreeTerms, {
+                            'label': 'J\'accepte les conditions d\'utilisation',
+                            'attr': {'class': 'form-check-input'}
+                        }) }}
+                        <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}"></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
