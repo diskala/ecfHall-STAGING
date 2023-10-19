@@ -21,6 +21,46 @@ class BookingRepository extends ServiceEntityRepository
         parent::__construct($registry, Booking::class);
     }
 
+       /**
+    * @return count of Bookings - Returns an integer
+    */
+    public function findNotPrereservedBookings(): array
+    {
+ 
+             $prereservedBookings = $this->createQueryBuilder('b')
+           ->andWhere('b.status <>:prereserved')
+           ->andWhere('b.status <>:available')
+             ->setParameter('prereserved', 2)
+             ->setParameter('available', 1)
+             ->orderBy('b.status', 'ASC')
+            // ->OrderBy('b.startDate', 'desc')
+             ->getQuery()
+             ->getResult()
+         ;
+         
+               
+        return $prereservedBookings;
+    }
+
+       /**
+    * @return count of Preserved - Returns an integer
+    */
+    public function findPrereservedBookings(): array
+    {
+ 
+             $prereservedBookings = $this->createQueryBuilder('b')
+           ->andWhere('b.status =:prereserved')
+             ->setParameter('prereserved', 2)
+             ->orderBy('b.startDate', 'ASC')
+             ->getQuery()
+             ->getResult()
+         ;
+         
+               
+        return $prereservedBookings;
+    }
+
+
 //    /**
 //     * @return Booking[] Returns an array of Booking objects
 //     */

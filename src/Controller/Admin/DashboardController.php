@@ -3,12 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Room;
+use App\Entity\User;
 use App\Entity\Status;
 use App\Entity\Booking;
 use App\Entity\Optional;
 use App\Entity\EventType;
 use App\Entity\TypeOption;
-use App\Entity\User;
+use App\Repository\BookingRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -16,10 +17,20 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
-{ 
+{
+
+    protected $bookingRepository;
+
+    public function __construct(
+        BookingRepository $bookingRepository,
+    ) {
+        $this->bookingRepository = $bookingRepository;
+    }
+    
     #[Route('/admin', name: 'admin')]
-    public function index(): Response
-    {
+    public function index (): Response
+    {  
+        
         // return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
@@ -36,7 +47,15 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
-        return $this->render('admin/dashboard.html.twig');
+
+
+       return $this->render('admin/dashboard.html.twig',[
+        'Prereserved'=> $this->bookingRepository->findPrereservedBookings(),
+        'NotPrereserved'=>$this->bookingRepository->findNotPrereservedBookings(),
+
+
+       ]);
+    
     }
 
     public function configureDashboard(): Dashboard
@@ -56,4 +75,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Option', 'fas fa-plus-minus', Optional::class);
         yield MenuItem::linkToCrud('Statut', 'fas fa-hourglass', Status::class);
     }
+
+
+
+  
 }

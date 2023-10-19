@@ -1,2 +1,79 @@
 
 {% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_content %} 
+
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Salle</th>
+      <th scope="col">Evènement</th>
+      <th scope="col">Début</th>
+      <th scope="col">Fin</th>
+      <th scope="col">CLient</th>
+      <th scope="col">Prix total</th>
+      <th scope="col">Statut</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for item in Prereserved %}
+    <tr class="bg-{{ item.status.color}}">
+      <th scope="row">{{ item.id }}</th>
+      <td class="bg-{{ item.status.color}}" >{{ item.room.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.startDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.endDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.user.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.totalPrice }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
+
+    </tr>
+{% endfor %}
+    
+  </tbody>
+</table>
+
+<hr>
+
+
+
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Salle</th>
+      <th scope="col">Evènement</th>
+      <th scope="col">Début</th>
+      <th scope="col">Fin</th>
+      <th scope="col">CLient</th>
+      <th scope="col">Prix total</th>
+      <th scope="col">Statut</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for item in NotPrereserved %}
+    <tr class="bg-{{ item.status.color}}">
+      <th scope="row">{{ item.id }}</th>
+      <td class="bg-{{ item.status.color}}" >{{ item.room.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.startDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.endDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.user.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.totalPrice }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
+
+    </tr>
+{% endfor %}
+    
+  </tbody>
+</table>
+
+
+
+
+ {% endblock %}
