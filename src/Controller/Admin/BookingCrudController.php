@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BookingCrudController extends AbstractCrudController
 {
+    use Trait\readonlyTrait;
     public static function getEntityFqcn(): string
     {
         return Booking::class;
