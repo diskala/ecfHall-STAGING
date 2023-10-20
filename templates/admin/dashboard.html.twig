@@ -4,10 +4,15 @@
 {% block page_content %} 
 
 
+<h2 class="text-center">Réservation(s) nécessitant une action</h2>
+
 <table class="table table-sm table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
+
+      <th scope="col">Photo</th>
+
       <th scope="col">Salle</th>
       <th scope="col">Evènement</th>
       <th scope="col">Début</th>
@@ -15,20 +20,33 @@
       <th scope="col">CLient</th>
       <th scope="col">Prix total</th>
       <th scope="col">Statut</th>
-      <th scope="col"></th>
+    <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
 {% for item in Prereserved %}
     <tr class="bg-{{ item.status.color}}">
       <th scope="row">{{ item.id }}</th>
+      <td class="bg-{{ item.status.color}}" > <img src="{{ item.room.picture }}" width="140" height="70"></td>
       <td class="bg-{{ item.status.color}}" >{{ item.room.name }}</td>
-      <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }} </td>
       <td class="bg-{{ item.status.color}}" >{{ item.startDate|date('d-m-Y')  }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.endDate|date('d-m-Y')  }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.user.name }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.totalPrice }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
+
+      <td class="bg-{{ item.status.color}}" >
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary active">
+    <input type="radio" name="options" id="option1" autocomplete="on" checked> Accepter
+  </label>
+  <label class="btn btn-secondary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> Refuser
+  </label>
+ 
+</div></td>
+
 
     </tr>
 {% endfor %}
@@ -38,13 +56,14 @@
 
 <hr>
 
-
-
+<h2 class="text-center"> Suivi réservation(s)</h2>
 
 <table class="table table-sm table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
+       <th scope="col">Photo</th>
+
       <th scope="col">Salle</th>
       <th scope="col">Evènement</th>
       <th scope="col">Début</th>
@@ -59,6 +78,9 @@
 {% for item in NotPrereserved %}
     <tr class="bg-{{ item.status.color}}">
       <th scope="row">{{ item.id }}</th>
+
+      <td class="bg-{{ item.status.color}}" > <img src="{{ item.room.picture }}" width="100" height="50"></td>
+
       <td class="bg-{{ item.status.color}}" >{{ item.room.name }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.startDate|date('d-m-Y')  }}</td>

@@ -7,7 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class TypeOptionCrudController extends AbstractCrudController
 {
-    use Trait\readonlyTrait;
+   
     public static function getEntityFqcn(): string
     {
         return TypeOption::class;
