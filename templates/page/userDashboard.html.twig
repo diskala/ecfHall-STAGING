@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PageController!{% endblock %}
+{% block title %}Tableau de Bord Utilisateur{% endblock %}
 
 {% block body %}
 
  
 <body>
+
      {{ include('_partials/header.html.twig') }}
      {{ include('_partials/navbar.html.twig') }}
         <!-- Page Content-->
@@ -22,7 +23,7 @@
                             <div class="mt-4"><img id="page" class="img-fluid rounded mb-4 mb-lg-0" src={{ item.picture }} alt="..." min-width="70%" max-height="70%" /></div>
                             <p class="card-text mt-2">{{ item. address }}</p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="/booking/"{{ item.id }}>Pré-réserver</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="/booking/room/{{ item.id }}/new">Pré-réserver</a></div>
                     </div>    
                 </div>
             </div>

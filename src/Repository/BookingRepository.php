@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Room;
 use App\Entity\User;
 use App\Entity\Booking;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -17,7 +19,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class BookingRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    public function __construct(ManagerRegistry $registry,EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Booking::class);
     }
@@ -44,7 +47,7 @@ class BookingRepository extends ServiceEntityRepository
     }
 
        /**
-    * @return count of Preserved - Returns an integer
+    * @return status Preserved 
     */
     public function findPrereservedBookings(): array
     {
@@ -79,6 +82,28 @@ class BookingRepository extends ServiceEntityRepository
                
         return count($bookings);
     }
+
+    /**
+    * @return array of bookings
+    */
+    public function bookingsByDateByRoom(int $roomId, \DateTime $endDate): array
+    {
+
+             $bookings = $this->createQueryBuilder('b')
+             ->where('b.endDate >= :dateFin')
+             ->andWhere('b.room = :roomId')
+             ->andWhere('b.status <> 1')
+             ->andWhere('b.status <> 4')
+             ->setParameter('dateFin', $endDate)
+              ->setParameter('roomId', $roomId)
+             ->orderBy('b.startDate', 'ASC')
+             ->orderBy('b.status', 'ASC')
+             ->getQuery()
+             ->getResult()
+         ;
+          return $bookings;
+    }
+
 
 //    /**
 //     * @return Booking[] Returns an array of Booking objects

@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.name }} - Formulaire de Pré-réservation{% endblock %}
+
+{% block body %}
+    <h1>Formulaire de Pré-réservation</h1>
+    <br>
+    <h3>Réservations déjà en cours :</h3>
+    <ul>
+    {% for item in bookings %}
+        <li><span class="text-decoration-underline">{{item.status.name}}</span> : {{ item.startDate|date('d-m-Y') }} --- {{ item.endDate|date('d-m-Y') }}</li>
+    {% endfor %}
+    </ul>
+    <hr>
+    <div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="booking-cta">
+                        <h1>Make your reservation</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
+                            ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
+                            Perspiciatis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-pull-7">
+                    <div class="booking-form">
+                        <form>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control" value={{app.user.email}} aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                            <div class="form-group">
+                                <span class="form-label">Salle n° {{room.id}}</span>
+                                <input class="form-control" type="text" value="{{room.name}}">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Date de Début</span>
+                                        <input class="form-control" type="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Date de Fin</span>
+                                        <input class="form-control" type="date" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Options</span>
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Adults</span>
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Children</span>
+                                        <select class="form-control">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Check availability</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            {# TODO : Ajouter les liens de modification booking_edit et de suppression booking_delete #}
+            {# <a href="{{ path('booking', {'id': booking.id}) }}" class="btn btn-primary">Modifier</a>
+            <a href="{{ path('booking', {'id': booking.id}) }}" class="btn btn-danger">Supprimer</a> #}
+        </div>
+{% endblock %}
