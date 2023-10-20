@@ -36,19 +36,27 @@
       <td class="bg-{{ item.status.color}}" >{{ item.totalPrice }}</td>
       <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
 
-      <td class="bg-{{ item.status.color}}" >
-      <form method="post">
-      <button type="button" class="btn btn-success btn-lg" method="post" option="accept" value="accept">
-          Accepter</button>
-      <button type="button" class="btn btn-danger btn-lg" method="post" option="refuse" value="refuse">
-          Refuser</button>
-</form>
+
+        <td class="bg-{{ item.status.color}}" > 
+        
+              <form action="{{ path('admin_update_booking_status', {'id': item.id}) }}" method="post">
+
+                <input type="hidden" name="accepted" value="accepted">
+                <button type="submit" name="btn" value="accepted" class="btn btn-success btn-lg">Accepter</button>
+                
+                <input type="hidden" name="refused" value="refused">
+                <button type="submit" name="btn" value="refused" class="btn btn-danger btn-lg">Refuser</button>
+
+            </form>
+            
+        </td>
+        
+    </tr>
+{% endfor %}
 </td>
 
 
-    </tr>
-{% endfor %}
-    
+
   </tbody>
 </table>
 

@@ -7,7 +7,11 @@
 
 <body>
     {{ include('_partials/header.html.twig') }}
-    {% block nav %}{% endblock %}
+
+    {% block nav %}
+    {{ include('_partials/navbar.html.twig') }}
+
+    {% endblock %}
     <div class="parent">
     <div class="container px-2 px-lg-2 child1">
         <div class="row gx-2 gx-lg-3 align-items-center my-5">
@@ -27,7 +31,7 @@
 
                         {% if app.user %}
                             <div class="mb-3">
-                                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                                Vous êtes connecté avec {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
                             </div>
                         {% endif %}
 

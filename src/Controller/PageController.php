@@ -17,12 +17,19 @@ class PageController extends AbstractController
         //$aRooms = $entityManager->getRepository(Booking::class)->findAvailByDate('2023-10-20', '2023-10-21');
         $aRooms = $rRepo->findAll();
         $countBookings = $bookingRepository->countBookingsByOwner($this->getUser());
-        return $this->render('page/userDashboard.html.twig', [
+        return $this->render('page/about.html.twig', [
             'aRooms' => $aRooms,
             // 'countBookings' => $countBookings,
             'controller_name' => 'PageController',
             'user' => $this->getUser(),
             'countBookings' => $countBookings,
         ]);
+    }
+
+    #[Route('/about', name: 'app_about')]
+    public function about()
+    {
+
+        return $this->render('page/about.html.twig');
     }
 }

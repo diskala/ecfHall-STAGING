@@ -10,36 +10,37 @@ use App\Entity\Optional;
 use App\Entity\EventType;
 use App\Entity\TypeOption;
 use App\Repository\BookingRepository;
+use App\Repository\StatusRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
 
     protected $bookingRepository;
+    protected $statusRepository;
+    protected $entityManager;
 
     public function __construct(
-        BookingRepository $bookingRepository,
+        BookingRepository $bookingRepository, StatusRepository $statusRepository, EntityManagerInterface $entityManager
     ) {
         $this->bookingRepository = $bookingRepository;
+        $this->statusRepository = $statusRepository;
+        $this->entityManager = $entityManager;
     }
     
     #[Route('/admin', name: 'admin')]
-    public function index (): Response
+    public function index(): Response
     {  
 
-        
 
-
-        // si post recu et formu valide  alors change le statut
-
-
-
-        
-        
         // return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
@@ -62,9 +63,36 @@ class DashboardController extends AbstractDashboardController
         'Prereserved'=> $this->bookingRepository->findPrereservedBookings(),
         'NotPrereserved'=>$this->bookingRepository->findNotPrereservedBookings(),
 
-
        ]);
     
+    }
+
+    #[Route('/admin/booking/{id}/update-status', name: 'admin_update_booking_status', methods: ['POST'])]
+    public function updateBookingStatus(Request $request, EntityManagerInterface $entityManager, int $id)
+    {
+        $formData = $request->request->all();
+
+        
+
+        $booking = $this->bookingRepository->findOneBy(
+            ['id'=>$id]);
+            if ($formData ['btn'] == 'accepted') {
+                $status = $this->statusRepository->findOneBy(
+                    ['name'=>'Réservée']);
+                $booking->setStatus($status) ;
+            } 
+            else {
+                $status = $this->statusRepository->findOneBy(
+                    ['name'=>'Annulée']);
+                $booking->setStatus($status) ;
+
+            }
+
+
+    $entityManager->persist($booking);
+    $entityManager->flush();
+
+        return $this->redirectToRoute('admin');
     }
 
     public function configureDashboard(): Dashboard
@@ -72,6 +100,8 @@ class DashboardController extends AbstractDashboardController
         return Dashboard::new()
         -> setTitle('<img src="/images/logo.png">');   
     }
+
+    
 
     public function configureMenuItems(): iterable
     {
@@ -85,6 +115,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Statut', 'fas fa-hourglass', Status::class);
     }
 
+   
   
 
   
