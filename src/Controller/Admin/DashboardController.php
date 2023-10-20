@@ -30,6 +30,15 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index (): Response
     {  
+
+        
+
+
+        // si post recu et formu valide  alors change le statut
+
+
+
+        
         
         // return parent::index();
 
@@ -76,29 +85,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Statut', 'fas fa-hourglass', Status::class);
     }
 
-    // #[Route('/{id}/edit', name: 'app_booking_edit', methods: ['GET', 'POST'])]
-    // public function edit(
-    //     Request $request, 
-    //     Booking $prereservedBbooking, 
-    //     EntityManagerInterface $entityManager
-    //     ): Response
-    // {
-    //     $form = $this->createForm(Booking::class, $prereservedBbooking);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() {
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->render('booking/edit.html.twig', [
-    //         'book' => $book,
-    //         'form' => $form,
-    //     ]);
-    // }
-
-
+  
 
   
 }

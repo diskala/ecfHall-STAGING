@@ -37,15 +37,13 @@
       <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
 
       <td class="bg-{{ item.status.color}}" >
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="option1" autocomplete="on" checked> Accepter
-  </label>
-  <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Refuser
-  </label>
- 
-</div></td>
+      <form method="post">
+      <button type="button" class="btn btn-success btn-lg" method="post" option="accept" value="accept">
+          Accepter</button>
+      <button type="button" class="btn btn-danger btn-lg" method="post" option="refuse" value="refuse">
+          Refuser</button>
+</form>
+</td>
 
 
     </tr>

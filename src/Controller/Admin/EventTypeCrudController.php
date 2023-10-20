@@ -28,7 +28,7 @@ class EventTypeCrudController extends AbstractCrudController
     ;
 }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -37,5 +37,5 @@ class EventTypeCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    */
+    
 }

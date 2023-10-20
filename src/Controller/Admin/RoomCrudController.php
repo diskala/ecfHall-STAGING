@@ -6,7 +6,6 @@ use App\Entity\Optional;
 use App\Entity\Room;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use App\Repository\OptionalRepository;
 use App\Repository\OptionRepository;
@@ -38,7 +37,7 @@ class RoomCrudController extends AbstractCrudController
     ;
 }
 
-    /*
+    
 
     public function configureFields(string $pageName): iterable
     {
