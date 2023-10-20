@@ -8,29 +8,16 @@
 <body>
     {{ include('_partials/header.html.twig') }}
     {% block nav %}{% endblock %}
-    <div class="container px-2 px-lg-2">
+    <div class="parent">
+    <div class="container px-2 px-lg-2 child1">
         <div class="row gx-2 gx-lg-3 align-items-center my-5">
-            <div class="col-lg-9"> 
-                <img id="page" class="img-fluid rounded mb-4 mb-lg-2" src='images/salle_16.jpg' width='1000' alt="..." />
-                
+            <div class="col-lg-8"> 
+                <img id="page" class="img-fluid rounded mb-4 mb-lg-2" src='images/salle_16.jpg' width='1000' alt="..." /> 
             </div>
-            <div class="col-lg-2">
-                <h2 class="font-weight-light">
-                    <img src="images/logo.png" width="190" alt="Logo Loc'Event">
-                </h2>
-                <p>
-            <br>
-                Vous recherchez l'endroit idéal pour votre prochain événement d'entreprise ou votre réunion d'association ? 
-                <br>
-                Ne cherchez plus ! Notre site de location de salle vous offre une solution simple et efficace pour trouver l'espace parfait. 
-                </p>
-                {# <a class="btn btn-primary" href="#!">Call to Action!</a> #}
-            </div>
-        </div>
-    </div>
-<div class="container mt-4">
+            <div class="col-lg-4">
+                <div class="container mt-4 child2">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-10">
             <div class="card transparent-card">
                 <div class="card-body">
                     <form method="post" class="text-center">
@@ -47,10 +34,10 @@
                         <h3 class="h3 mb-3 font-weight-normal">Connectez-vous</h3>
                         <label for="inputEmail" class="sr-only">Email</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                        <label for="inputPassword" class="sr-only">Mot de passe</label>
+                        <label for="inputPassword" class="sr-only  mt-4">Mot de passe</label>
                         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
+                        <button class="btn btn-lg btn-primary  mt-4" type="submit">Se connecter</button>
                         <p class="mt-3">Pas encore de compte ? <a href="{{ path('app_register') }}">S'inscrire</a></p>
                     </form>
                 </div>
@@ -58,6 +45,13 @@
         </div>
     </div>
 </div>
+            <br>
 
+                {# <a class="btn btn-primary" href="#!">Call to Action!</a> #}
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 {% endblock %}

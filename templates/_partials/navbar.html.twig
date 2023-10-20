@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="#!">Event - {{ app.user.email }} </a>
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        {% if app.user %}
+                            {% if 'ROLE_ADMIN' in app.user.getroles() %}
+                                <li class="nav-item"><a class="nav-link" href="{{ path('admin') }}">Mon Compte Admin</a></li>
+                            {% else %}
+                                <li class="nav-item"><a class="nav-link" href="{{ path('app_userDashboard') }}">Mon Compte User</a></li>
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Connexion</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+
+            </div>
+        <button type="button" class="btn btn-warning position-relative mr-4">
+            Réservations
+            <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
+                {{ countBookings }}
+                <span class="visually-hidden">réservations et pré-réservations</span>
+            </span>
+        </button>
+</nav>

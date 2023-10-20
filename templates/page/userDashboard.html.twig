@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PageController!{% endblock %}
+
+{% block body %}
+
+ 
+<body>
+     {{ include('_partials/header.html.twig') }}
+     {{ include('_partials/navbar.html.twig') }}
+        <!-- Page Content-->
+        <div class="container col-9">
+            <div class="row gx-4 gx-lg-5 mt-4 mb-4">
+            {% for item in aRooms %}
+            <!-- Content Row-->
+
+            <div class="col-md-6 mb-4">
+                <div class="card-deck">
+                    <div class="card h-80 text-center mt-4 mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">{{ item.name|capitalize }} - {{ item.capacity }} p.</h2>
+                            <div class="mt-4"><img id="page" class="img-fluid rounded mb-4 mb-lg-0" src={{ item.picture }} alt="..." min-width="70%" max-height="70%" /></div>
+                            <p class="card-text mt-2">{{ item. address }}</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="/booking/"{{ item.id }}>Pré-réserver</a></div>
+                    </div>    
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        {{ include('_partials/footer.html.twig') }}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+{% endblock %}
