@@ -14,15 +14,21 @@ class PageController extends AbstractController
     public function dashboard(BookingRepository $bookingRepository, RoomRepository $rRepo): Response
     {
 
-        //$aRooms = $entityManager->getRepository(Booking::class)->findAvailByDate('2023-10-20', '2023-10-21');
         $aRooms = $rRepo->findAll();
         $countBookings = $bookingRepository->countBookingsByOwner($this->getUser());
-        return $this->render('page/about.html.twig', [
+        $bookings = $bookingRepository->bookingsByOwner($this->getUser());
+        $reserved = $bookingRepository->bookingsByOwnerByStatus($this->getUser(), 3);
+        $prereserved = $bookingRepository->bookingsByOwnerByStatus($this->getUser(), 2);
+        $cancelled = $bookingRepository->bookingsByOwnerByStatus($this->getUser(), 4);
+        return $this->render('page/userDashboard.html.twig', [
             'aRooms' => $aRooms,
-            // 'countBookings' => $countBookings,
-            'controller_name' => 'PageController',
             'user' => $this->getUser(),
             'countBookings' => $countBookings,
+            'bookings' => $bookings,
+            'reserved' => $reserved,
+            'prereserved' => $prereserved,
+            'cancelled' => $cancelled,
+
         ]);
     }
 

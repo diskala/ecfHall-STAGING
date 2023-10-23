@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+
+use App\Entity\Room;
 use App\Entity\Optional;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Optional>
@@ -21,28 +23,22 @@ class OptionalRepository extends ServiceEntityRepository
         parent::__construct($registry, Optional::class);
     }
 
-//    /**
-//     * @return Optional[] Returns an array of Optional objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+                  /**
+    * @return Optionals[] Returns an array of Options objects
+    */
+    public function findOptionsByRoom(Room $room): array
+    {
+        $roomOptions = $this->createQueryBuilder('o')
+        ->andWhere('o.id = :roomId')
+        ->setParameter('roomId', $room->getId())
+        ->groupBy('o.type')
+        ->orderBy('o.name', 'ASC')
+        ->getQuery()
+        ->getResult()
+    ;
 
-//    public function findOneBySomeField($value): ?Optional
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    return $roomOptions;
+    }
+
+
 }

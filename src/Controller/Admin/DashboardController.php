@@ -62,6 +62,10 @@ class DashboardController extends AbstractDashboardController
        return $this->render('admin/dashboard.html.twig',[
         'Prereserved'=> $this->bookingRepository->findPrereservedBookings(),
         'NotPrereserved'=>$this->bookingRepository->findNotPrereservedBookings(),
+        'urgent'=>$this->bookingRepository->findPrereservedBookingsAlert(),
+        
+        
+
 
        ]);
     
