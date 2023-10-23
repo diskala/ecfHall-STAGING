@@ -29,17 +29,16 @@ class OptionalCrudController extends AbstractCrudController
     ;
 }
 
-    
-
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            TextField::new('type'),
-            TextField::new('name'),
-            TextField::new('description'),
+    // public function configureFields(string $pageName): iterable
+    // {
+    //     return [
+    //         IdField::new('id'),
+    //         TextField::new('type'),
+    //         TextField::new('name'),
+    //         TextField::new('description'),
             
 
-        ];
-    }
+    //     ];
+    // }
     
 }

@@ -38,6 +38,13 @@ class Optional
         return $this->id;
     }
 
+    public function setId(int $id): static
+    {
+        $this->id= $id;
+
+        return $this;
+    }
+
     public function getType(): ?TypeOption
     {
         return $this->type;
