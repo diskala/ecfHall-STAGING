@@ -1,2 +1,107 @@
 
 {% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_content %} 
+
+
+<h2 class="text-center">Réservation(s) nécessitant une action</h2>
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+
+      <th scope="col">Photo</th>
+
+      <th scope="col">Salle</th>
+      <th scope="col">Evènement</th>
+      <th scope="col">Début</th>
+      <th scope="col">Fin</th>
+      <th scope="col">CLient</th>
+      <th scope="col">Prix total</th>
+      <th scope="col">Statut</th>
+    <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for item in Prereserved %}
+    <tr class="bg-{{ item.status.color}}">
+      <th scope="row">{{ item.id }}</th>
+      <td class="bg-{{ item.status.color}}" > <img src="{{ item.room.picture }}" width="140" height="70"></td>
+      <td class="bg-{{ item.status.color}}" >{{ item.room.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }} </td>
+      <td class="bg-{{ item.status.color}}" >{{ item.startDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.endDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.user.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.totalPrice }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
+
+
+        <td class="bg-{{ item.status.color}}" > 
+        
+              <form action="{{ path('admin_update_booking_status', {'id': item.id}) }}" method="post">
+
+                <input type="hidden" name="accepted" value="accepted">
+                <button type="submit" name="btn" value="accepted" class="btn btn-success btn-lg">Accepter</button>
+                
+                <input type="hidden" name="refused" value="refused">
+                <button type="submit" name="btn" value="refused" class="btn btn-danger btn-lg">Refuser</button>
+
+            </form>
+            
+        </td>
+        
+    </tr>
+{% endfor %}
+</td>
+
+
+
+  </tbody>
+</table>
+
+<hr>
+
+<h2 class="text-center"> Suivi réservation(s)</h2>
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+       <th scope="col">Photo</th>
+
+      <th scope="col">Salle</th>
+      <th scope="col">Evènement</th>
+      <th scope="col">Début</th>
+      <th scope="col">Fin</th>
+      <th scope="col">CLient</th>
+      <th scope="col">Prix total</th>
+      <th scope="col">Statut</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for item in NotPrereserved %}
+    <tr class="bg-{{ item.status.color}}">
+      <th scope="row">{{ item.id }}</th>
+
+      <td class="bg-{{ item.status.color}}" > <img src="{{ item.room.picture }}" width="100" height="50"></td>
+
+      <td class="bg-{{ item.status.color}}" >{{ item.room.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.eventType.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.startDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.endDate|date('d-m-Y')  }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.user.name }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.totalPrice }}</td>
+      <td class="bg-{{ item.status.color}}" >{{ item.status.name }}</td>
+
+    </tr>
+{% endfor %}
+    
+  </tbody>
+</table>
+
+
+
+
+ {% endblock %}

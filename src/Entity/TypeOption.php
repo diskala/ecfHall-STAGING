@@ -18,12 +18,12 @@ class TypeOption
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Option::class)]
-    private Collection $options;
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Optional::class)]
+    private Collection $optionals;
 
     public function __construct()
     {
-        $this->options = new ArrayCollection();
+        $this->optionals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -31,6 +31,14 @@ class TypeOption
         return $this->id;
     }
 
+    
+    public function setId(int $id): static
+    {
+        $this->id= $id;
+
+        return $this;
+    }
+    
     public function getName(): ?string
     {
         return $this->name;
@@ -43,38 +51,39 @@ class TypeOption
         return $this;
     }
 
-    /**
-     * @return Collection<int, Option>
-     */
-    public function getOptions(): Collection
-    {
-        return $this->options;
-    }
-
-    public function addOption(Option $option): static
-    {
-        if (!$this->options->contains($option)) {
-            $this->options->add($option);
-            $option->setType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOption(Option $option): static
-    {
-        if ($this->options->removeElement($option)) {
-            // set the owning side to null (unless already changed)
-            if ($option->getType() === $this) {
-                $option->setType(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function __toString(): string
     {
         return $this->name ?? '';
+    }
+
+    /**
+     * @return Collection<int, Optional>
+     */
+    public function getOptionals(): Collection
+    {
+        return $this->optionals;
+    }
+
+    public function addOptional(Optional $optional): static
+    {
+        if (!$this->optionals->contains($optional)) {
+            $this->optionals->add($optional);
+            $optional->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOptional(Optional $optional): static
+    {
+        if ($this->optionals->removeElement($optional)) {
+            // set the owning side to null (unless already changed)
+            if ($optional->getType() === $this) {
+                $optional->setType(null);
+            }
+        }
+
+        return $this;
     }
 }

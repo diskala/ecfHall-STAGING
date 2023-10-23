@@ -38,10 +38,22 @@ class Booking
     #[ORM\JoinColumn(nullable: false)]
     private ?Room $room = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    public function setId(int $id): static
+    {
+        $this->id= $id;
+
+        return $this;
+    }
+    
 
     public function getEventType(): ?EventType
     {
@@ -130,6 +142,18 @@ class Booking
     public function __toString(): string
     {
         return $this->eventType->getName() ?? '';
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
 }

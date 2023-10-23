@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos{% endblock %}
+
+{% block body %}
+
+
+<body>
+    {{ include('_partials/header.html.twig') }}
+
+    {% block nav %}
+    {{ include('_partials/navbar.html.twig') }}
+
+    {% endblock %}
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-image: url("https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&q=80&w=1612&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .titre {
+        font-family: "Roboto", sans-serif;
+        font-size: 40px;
+      line-height: 1.5;
+      
+    }
+    .texte {
+      font-family: "Roboto", sans-serif;
+      font-size: 21px;
+      line-height: 1.5;
+      
+      content:
+    }
+     .liste {
+        font-family: "Roboto", sans-serif;
+        font-size: 17px;
+      line-height: 1.5;
+     
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="titre">À propos</h1>
+  </header>
+  <br>
+<br>
+
+  <main>
+    <p class="texte">
+      Loc'Event est une entreprise de location de salle qui propose une large gamme d'espaces pour tous les événements, des réunions d'affaires aux mariages. Nous avons des salles de toutes tailles, dans différents styles et emplacements, pour répondre à tous vos besoins.
+    </p>
+    <ul class="liste">
+      <li>Salles de réunion</li>
+      <li>Salles de banquet</li>
+      <li>Salles de réception</li>
+      <li>Salles de spectacle</li>
+      
+    </ul>
+    <p class="texte">
+      Nos salles sont équipées de tout ce dont vous avez besoin pour un événement réussi, y compris :
+    </p>
+    <ul class="liste">
+      <li>Matériel de présentation</li>
+      <li>Wi-Fi</li>
+      <li>Sonorisation</li>
+      <li>Climatisation</li>
+      <li>Parking</li>
+    </ul>
+    <p class="texte">
+      Nous vous proposons également un service de restauration et de traiteur pour que vous n'ayez à vous soucier de rien.
+    </p>
+    <p class="texte">
+      Contactez-nous dès aujourd'hui pour en savoir plus sur nos salles et nos services.
+    </p>
+    
+<br>
+    <a href="contact.html" class="lien texte">Contact</a>
+  </main>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <footer>
+    <p class="liste">[Copyright] [2023]</p>
+  </footer>
+
+</body>
+
+
+{% endblock %}
