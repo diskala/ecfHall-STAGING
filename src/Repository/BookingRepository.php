@@ -39,6 +39,8 @@ class BookingRepository extends ServiceEntityRepository
              ->setParameter('prereserved', 2)
              ->setParameter('available', 1)
              ->orderBy('b.status', 'ASC')
+             ->orderBy('b.startDate', 'desc')
+
              ->getQuery()
              ->getResult()
          ;
@@ -95,7 +97,7 @@ return $urgent;
  /**
     * @return count of Bookings - Returns an integer
     */
-    public function countBookingsByOwner(User $user): int
+    public function countBookingsByOwner($user): int
     {
  
              $bookings = $this->createQueryBuilder('b')
@@ -115,6 +117,7 @@ return $urgent;
     * @return array of bookings
     */
 
+  
     // find all bookings for a room with status = 'Réservée' or 'Pré-réservée'
     // and endDate >= today
     // order by status DESC

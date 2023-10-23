@@ -10,8 +10,8 @@
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
-        "fakerphp/faker": "^1.23",
         "easycorp/easyadmin-bundle": "^4.7",
+        "fakerphp/faker": "^1.23",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.24",
         "symfony/asset": "6.3.*",
@@ -25,12 +25,14 @@
         "symfony/http-client": "6.3.*",
         "symfony/intl": "6.3.*",
         "symfony/mailer": "6.3.*",
+        "symfony/messenger": "6.3.*",
         "symfony/mime": "6.3.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/notifier": "6.3.*",
         "symfony/process": "6.3.*",
         "symfony/property-access": "6.3.*",
         "symfony/property-info": "6.3.*",
+        "symfony/requirements-checker": "*",
         "symfony/runtime": "6.3.*",
         "symfony/security-bundle": "6.3.*",
         "symfony/serializer": "6.3.*",
@@ -40,6 +42,8 @@
         "symfony/validator": "6.3.*",
         "symfony/web-link": "6.3.*",
         "symfony/yaml": "6.3.*",
+        "symfonycasts/reset-password-bundle": "^1.18",
+        "symfonycasts/verify-email-bundle": "^1.14",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
@@ -73,7 +77,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "requirements-checker": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -98,7 +103,7 @@
         "symfony/css-selector": "6.3.*",
         "symfony/debug-bundle": "6.3.*",
         "symfony/maker-bundle": "^1.0",
-        "symfony/phpunit-bridge": "^6.3",
+        "symfony/phpunit-bridge": "*",
         "symfony/stopwatch": "6.3.*",
         "symfony/web-profiler-bundle": "6.3.*"
     }

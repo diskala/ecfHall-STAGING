@@ -56,4 +56,20 @@ class RoomRepository extends ServiceEntityRepository
 
    }
 
+
+   public function searching($mots)
+   {
+       $query= $this->createQueryBuilder('r');
+       
+       if($mots != null)
+       {
+        $query->andWhere('MATCH_AGAINST(r.name, r.address) AGAINST(:mots BOOLEAN)>0')
+        ->setParameter('mots', $mots );
+       }
+
+       return $query->getQuery()->getResult();
+
+   }
+
+
 }

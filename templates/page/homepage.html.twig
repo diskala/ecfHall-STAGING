@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil / Connexion{% endblock %}
+
+{% block body %}
+
+
+
+    {{ include('_partials/header.html.twig') }}
+    <div class="container px-4 px-lg-5">
+			<!-- Heading Row-->
+			<div class="row gx-4 gx-lg-5 align-items-center my-5">
+				<div style="background-image: url('https://sonovision.com/wp-content/uploads/sites/2/2018/06/SallesReuPanasonic-1024x576.jpeg'); background-size: cover; background-position: center; height: 75vh; display: flex; align-items: center; justify-content: center;">
+					<div class="col-lg-5">
+						<h1 class="text-danger">Location salle de réunion et séminaire unique</h1>
+						<h4 class="text-white bg-dark">Réservez des espaces uniques pour vos activités professionnelles.!</h4>
+						<a class="btn btn-warning" href={{ path('app_page') }}>En savoir plus!</a>
+					</div>
+				</div>
+				<!-- Call to Action-->
+				<div class="card text-white bg-dark my-5 py-4 text-center">
+					<div class="" p-3 mb-2 bg-info text-white">
+						<p class="text-white m-0">vivez l’expérience du travail de demain grâce à cette solution profitant à tous et offrant une diversité d’espace sans pareille : des ateliers d’artistes, des lofts industriels, des boutiques-hôtels, des concepts stores…</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+   
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        
+                            <h4 class="post-title">Nous avons des salles à votre disposition dans toute la France.</h4>
+                            <ul >
+
+                         <li>Adaptées à la composition de groupes et nombre de personnes</li>
+                         <li>Superficies de 20 à 1200m²</li>
+                         <li>20 salles de formation informatique (équipées de 7 postes)</li>
+                         <li>Accès internet dans toutes les salles</li>
+                         <li>Chaque site est équipé d’une salle d’accueil, d’un vidéo-projecteur…</li>
+                         <li>Conformités / sécurité (ADAP – Véritas)</li>
+                         </ul>
+
+                        <p> Dans un cadre privilégié et dans un périmètre d’accessibilité, EVENT vous propose pour la plupart de ses sites
+                             une réelle proximité de la gare, des hôtels, des restaurants, du centre-ville…</p>
+                             
+                        
+                         
+                    </div>
+                
+                 <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                         
+                        <div class="card"><h5 class="p-3 mb-2 bg-info text-white">Matériel à votre disposition et services</h5></div>
+
+                        <ol>
+                        <li>Vidéo projecteur et écran</li>
+                        <li>Chaîne hi-fi</li>                        
+                        <li>Paperboard</li>                                                 
+                        <li> Ordinateur</li>                         
+                        <li> Enceintes</li>
+                        <li> Wifi sécurisé</li>
+                        <li> Système d’alarme</li>
+                        <li> Cafetière</li>
+                                                                          
+                        </ol>
+                    </div>
+
+                     
+                </div>
+                 
+                   
+            
+                    
+                
+                     
+                         
+                </div>
+            </div>
+        
+        
+     {{ include('_partials/footer.html.twig') }}
+
+{% endblock %}

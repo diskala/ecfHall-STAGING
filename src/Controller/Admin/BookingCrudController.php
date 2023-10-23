@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Room;
 use App\Entity\Booking;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -19,8 +20,8 @@ class BookingCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Booking::class;
+        return Room::class;
     }
-
 
     public function configureActions(Actions $actions): Actions
 {
@@ -30,8 +31,6 @@ class BookingCrudController extends AbstractCrudController
         ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
     ;
 }
-
-    
 
     public function configureFields(string $pageName): iterable
     {

@@ -1,0 +1,4 @@
+/* body { background-image: url(' ');}  */
+.error-template {padding: 40px 15px;text-align: center; color: rgb(230, 13, 13); font-size: 50px; font-weight:bold;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }

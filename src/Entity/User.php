@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Attribute;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Filesystem\Path;
+use Symfony\Component\PropertyAccess\PropertyPath as PropertyAccessPropertyPath;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Util\PropertyPath;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 
@@ -49,6 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
     private Collection $bookings;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     public function __construct()
     {
@@ -118,6 +124,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+     /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getConfirm_password(): string
+    {
+        return $this->confirm_password;
+    }
+
+    public function setConfirm_password(string $confirm_password): static
+    {
+        $this->confirm_password = $confirm_password;
 
         return $this;
     }
@@ -208,4 +229,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+ 
+public function isVerified(): bool
+{
+    return $this->isVerified;
+}
+
+public function setIsVerified(bool $isVerified): static
+{
+    $this->isVerified = $isVerified;
+
+    return $this;
+}
 }

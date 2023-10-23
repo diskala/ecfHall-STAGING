@@ -21,11 +21,11 @@ class RoomCrudController extends AbstractCrudController
 {
 
 
+
     // public static function getEntityOption(): string
     // {
     //     return Optional::class;
     // }
-
 
 
     public static function getEntityFqcn(): string
@@ -38,14 +38,15 @@ class RoomCrudController extends AbstractCrudController
 
 
     public function configureActions(Actions $actions): Actions
-{
-    return $actions
-        // ...
-        ->add(Crud::PAGE_INDEX, Action::DETAIL)
-        ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
-        
-    ;
-}
+
+
+    {
+        return $actions
+            // ...
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
+        ;
+    }
 
     public function configureFields(string $pageName): iterable
     {
@@ -56,7 +57,6 @@ class RoomCrudController extends AbstractCrudController
                 random_int(21, 999), $file->getFilename(), $file->guessExtension()))
 ,
 
-// /images/salle_2.jpg
 
             TextField::new('name'),
             TextField::new('address'),
