@@ -3,37 +3,64 @@
 {% block title %}Tableau de Bord Utilisateur{% endblock %}
 
 {% block body %}
-
- 
-<body>
-
      {{ include('_partials/header.html.twig') }}
      {{ include('_partials/navbar.html.twig') }}
         <!-- Page Content-->
-        <div class="container col-9">
+        <div class="container">
             <div class="row gx-4 gx-lg-5 mt-4 mb-4">
-            {% for item in aRooms %}
-            <!-- Content Row-->
-
-            <div class="col-md-6 mb-4">
-                <div class="card-deck">
-                    <div class="card h-80 text-center mt-4 mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title mb-4">{{ item.name|capitalize }} - {{ item.capacity }} p.</h2>
-                            <div class="mt-4"><img id="page" class="img-fluid rounded mb-4 mb-lg-0" src={{ item.picture }} alt="..." min-width="70%" max-height="70%" /></div>
-                            <p class="card-text mt-2">{{ item. address }}</p>
+                <div class="col-8">
+                    <div class="text-center">
+                        <h1> Liste des salles </h1>
+                    </div>
+                    <div class="row">
+                    {% for item in aRooms %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card-deck">
+                            <div class="card h-80 text-center mt-4 mb-4">
+                                <div class="card-body">
+                                    <h2 class="card-title mb-4">{{ item.name|capitalize }} - {{ item.capacity }} p.</h2>
+                                    <div class="mt-4"><img id="page" class="img-fluid rounded mb-4 mb-lg-0" src={{ item.picture }} alt="..." min-width="70%" max-height="70%" /></div>
+                                    <p class="card-text mt-2">{{ item. address }}</p>
+                                </div>
+                                <div class="card-footer"><a class="btn btn-primary btn-sm" href="{{ path('app_booking_addBooking', { "id": item.id }) }}">Pré-réserver</a></div>
+                            </div>    
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="/booking/room/{{ item.id }}/new">Pré-réserver</a></div>
-                    </div>    
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center">
+                        <h1> Vos réservations </h1>
+                    </div>
+                    <div class="col-md-5 col-lg-12 mt-4 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-warning rounded-pill">{{ prereserved }}</span>
+                            <span class="badge bg-success rounded-pill">{{ reserved }}</span>
+                            <span class="badge bg-danger rounded-pill">{{ cancelled }}</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                        {% if bookings %}
+                            {% for b in bookings %}
+                            <li class="list-group-item d-flex justify-content-between lh-sm bg-{{ b.status.color }}">
+                                <div>
+                                <h6 class="my-0">Salle n° {{ b.room.id }}: {{ b.room.name }}</h6>
+                                <small class="text-body-secondary">du {{b.startDate|date('d-m-Y')}} au {{b.endDate|date('d-m-Y')}}</small>
+                                </div>
+                                <div>
+                                <h6 class="my-0"><span class="text-body-secondary">{{ b.totalPrice }}€</span></h6>
+                                {% if b.status.name == "Pré-réservée"%}
+                                    <small class="text-body-secondary"><a href={{ path('app_booking_details', { "id": b.id }) }}>Modifier</a></small>
+                                {% endif %}
+                                </div>
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
-            </div>
         </div>
-        {{ include('_partials/footer.html.twig') }}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {{ include('_partials/footer.html.twig') }}
 
 {% endblock %}

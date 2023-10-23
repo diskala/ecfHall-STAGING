@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StatusRepository;
+use App\Repository\BookingRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -41,6 +43,7 @@ class Booking
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
 
     public function getId(): ?int
     {

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.name }} - ADD - Ajouter une Pré-réservation{% endblock %}
+
+{% block body %}
+{{ include('_partials/header.html.twig') }}
+{{ include('_partials/navbar.html.twig') }}
+<div class="container">
+  <main>
+    <div class="py-5">
+      <div class="text-center">
+        <h2>Formulaire de Pré-Réservation</h2>
+      </div>
+      {% if bookings %}
+        <p class="lead"><strong>Réservations déjà en cours</strong> :</p>
+          <ul class="border border-danger bg-warning">
+        {% for item in bookings %}
+          <div class="col-4">
+            <li test-start ><span class="text-decoration-underline">{{item.status.name}}</span> : {{ item.startDate|date('d-m-Y') }} --- {{ item.endDate|date('d-m-Y') }}</li>
+          </div>
+        {% endfor %}
+          </ul>
+      {% else %}
+          <p class="lead">Cette salle ne dispose pour le moment d'aucune réservation
+            (ou pré-réservation) en cours ou à venir.
+          </p>
+      {% endif %}
+      <hr>
+        {% include "booking/_form.html.twig" %}
+    </div>
+  </main>
+</div>       
+{% endblock %}

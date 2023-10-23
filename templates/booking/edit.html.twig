@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.name }} - Modifier une Pré-réservation{% endblock %}
+
+{% block body %}
+{{ include('_partials/header.html.twig') }}
+{{ include('_partials/navbar.html.twig') }}
+<div class="container">
+  <main>
+    <div class="py-5">
+      <div class="text-center">
+        <h2>Modifier une Pré-Réservation</h2>
+      </div>
+      <hr>
+        {% include "booking/_formEdit.html.twig" %}
+    </div>
+  </main>
+</div>       
+{% endblock %}
