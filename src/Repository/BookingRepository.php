@@ -31,19 +31,22 @@ class BookingRepository extends ServiceEntityRepository
     public function findNotPrereservedBookings(): array
     {
  
+
              $notPrereservedBookings = $this->createQueryBuilder('b')
+
            ->andWhere('b.status <>:prereserved')
            ->andWhere('b.status <>:available')
              ->setParameter('prereserved', 2)
              ->setParameter('available', 1)
              ->orderBy('b.status', 'ASC')
+
              ->orderBy('b.startDate', 'desc')
              ->getQuery()
              ->getResult()
          ;
-         
-               
+ 
         return $notPrereservedBookings;
+
     }
 
        /**
@@ -53,6 +56,7 @@ class BookingRepository extends ServiceEntityRepository
     {
  
              $prereservedBookings = $this->createQueryBuilder('b')
+
             ->andWhere('b.status =:prereserved')
             ->setParameter('prereserved', 2)
             ->orderBy('b.startDate', 'ASC')
@@ -90,9 +94,6 @@ return $urgent;
 
     }
 
-
-
-
  /**
     * @return count of Bookings - Returns an integer
     */
@@ -115,10 +116,12 @@ return $urgent;
     /**
     * @return array of bookings
     */
+
     // find all bookings for a room with status = 'Réservée' or 'Pré-réservée'
     // and endDate >= today
     // order by status DESC
     // and order by startDate ASC
+
     public function bookingsByDateByRoom(int $roomId, \DateTime $endDate): array
     {
 
@@ -163,6 +166,7 @@ return $urgent;
           return $bookings;
     }
 
+
     /**
     * @return nb of bookings with statusId parameter
     * returns an integer
@@ -185,4 +189,5 @@ return $urgent;
          ;
           return count($bookings);
     }
+
 }

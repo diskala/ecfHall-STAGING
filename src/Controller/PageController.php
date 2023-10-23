@@ -13,6 +13,7 @@ class PageController extends AbstractController
     #[Route('/userDashboard', name: 'app_userDashboard')]
     public function dashboard(BookingRepository $bookingRepository, RoomRepository $rRepo): Response
     {
+
         $aRooms = $rRepo->findAll();
         $countBookings = $bookingRepository->countBookingsByOwner($this->getUser());
         $bookings = $bookingRepository->bookingsByOwner($this->getUser());
@@ -27,6 +28,7 @@ class PageController extends AbstractController
             'reserved' => $reserved,
             'prereserved' => $prereserved,
             'cancelled' => $cancelled,
+
         ]);
     }
 

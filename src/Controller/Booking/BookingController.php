@@ -33,6 +33,7 @@ class BookingController extends AbstractController
         $this->statusRepository = $statusRepository;
     }
 
+
     #[Route('/edition/{id}', name: 'details')]
     public function details(Booking $booking, Request $request, EntityManagerInterface $em): Response
     {

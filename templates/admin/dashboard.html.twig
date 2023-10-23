@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+
       <th scope="col">Photo</th>
       <th scope="col">Salle</th>
       <th scope="col">Evènement</th>
@@ -18,12 +19,14 @@
       <th scope="col">CLient</th>
       <th scope="col">Prix total</th>
       <th scope="col">Statut</th>
+
       <th scope="col">Action</th>
     <th scope="col">Urgence 5jrs </th>
     </tr>
   </thead>
   <tbody>
   {% set emergency = 0 %}
+
 {% for item in Prereserved %}
     <tr class="bg-{{ item.status.color}}">
       <th scope="row">{{ item.id }}</th>
@@ -38,6 +41,7 @@
 
 
         <td class="bg-{{ item.status.color}}" > 
+
           <form action="{{ path('admin_update_booking_status', {'id': item.id}) }}" method="post">
 
                 <input type="hidden" name="accepted" value="accepted">
@@ -47,6 +51,7 @@
                 <button type="submit" name="btn" value="refused" class="btn btn-danger btn-lg">Refuser</button>
 
             </form>
+
         </td>
          <td class="bg-{{ item.status.color}}" > 
 

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+
 use App\Entity\Room;
 use App\Entity\Optional;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,5 +39,6 @@ class OptionalRepository extends ServiceEntityRepository
 
     return $roomOptions;
     }
+
 
 }

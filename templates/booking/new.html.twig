@@ -3,6 +3,7 @@
 {% block title %}{{ app.user.name }} - Formulaire de Pré-réservation{% endblock %}
 
 {% block body %}
+
 {{ include('_partials/header.html.twig') }}
 {{ include('_partials/navbar.html.twig') }}
     <h1>Formulaire de Pré-réservation</h1>
@@ -15,6 +16,7 @@
         {% endfor %}
         </ul>
     {% endif %}
+
     <hr>
     <div id="booking" class="section">
     <div class="section-center">
@@ -333,4 +335,5 @@
 
     <script src="checkout.js"></script></body>
 </html>        
+
 {% endblock %}
