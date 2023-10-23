@@ -39,8 +39,6 @@ class BookingRepository extends ServiceEntityRepository
              ->setParameter('prereserved', 2)
              ->setParameter('available', 1)
              ->orderBy('b.status', 'ASC')
-
-             ->orderBy('b.startDate', 'desc')
              ->getQuery()
              ->getResult()
          ;
