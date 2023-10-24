@@ -57,13 +57,15 @@
 
                                                 <div class="form-check mb-3">
                         {{ form_row(registrationForm.agreeTerms, {
-                            'label': 'J\'accepte les conditions d\'utilisation',
+                            'label': 'J\'accepte les conditions générales d\'utilisation',
                             'attr': {'class': 'form-check-input'}
                         }) }}
+                        <a href="{{ path('app_CGU') }}">Consulter nos CGU </a>
                         <label class="form-check-label" for="{{ registrationForm.agreeTerms.vars.id }}"></label>
+                        
                             </div>
                     </div>
-                    
+                    <br>
                     <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
                     {{ form_end(registrationForm) }}
 						</div>

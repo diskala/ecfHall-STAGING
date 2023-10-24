@@ -10,13 +10,21 @@
 
     {% block nav %}
     {{ include('_partials/navbar.html.twig') }}
-
     {% endblock %}
+
+     <style>
+    body {
+      background-image: url("https://images.unsplash.com/photo-1494506281370-d80348b928fa?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    </style>
+
     <div class="parent">
     <div class="container px-2 px-lg-2 child1">
         <div class="row gx-2 gx-lg-3 align-items-center my-5">
             <div class="col-lg-8"> 
-                <h2 class="text-center text-primary"> Votre événement, notre espace, une expérience unique. </h2>
+                <h2 class="text-center text-white"> Votre événement, notre espace, une expérience unique. </h2>
                 <img id="page" class="img-fluid rounded mb-4 mb-lg-2" src='images/salle_16.jpg' width='1000' alt="..." /> 
             </div>
             <div class="col-lg-4">

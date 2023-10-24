@@ -72,6 +72,22 @@ public function about()
     return $this->render('page/about.html.twig');
 }
 
+
+#[Route('/CGU', name: 'app_CGU')]
+public function CGU()
+{
+    
+    return $this->render('page/CGU.html.twig');
+}
+
+
+#[Route('/contact', name: 'app_contact')]
+public function contact()
+{
+    
+    return $this->render('page/contact.html.twig');
+}
+
 }
 
  

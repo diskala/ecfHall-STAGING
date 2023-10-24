@@ -1,0 +1,83 @@
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+  
+    {{ include('_partials/header.html.twig') }}
+    {{ include('_partials/navbar.html.twig') }}
+
+<style>
+    body {
+      background-image: url("https://images.unsplash.com/photo-1478031706604-bb4b7b0b4e9e?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-repeat: no-repeat;
+      background-size: cover;
+      }
+</style>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Contact</title>
+    <!-- Ajout de Bootstrap (CSS) depuis un CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Contactez-nous</h1>
+        <form action="traitement.php" method="post">
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail :</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sujet">Sujet :</label>
+                <input type="text" class="form-control" id="sujet" name "sujet" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message :</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+        <br>
+        <div class="mt-4 text-white">
+            <h2>Adresse du Siège Social</h2>
+            <p>
+                Loc'Event<br>
+                38, rue de la Station <br>
+                95130 Franconville <br>
+                France
+            </p>
+        </div>
+    </div>
+
+    <!-- Ajout de Bootstrap (JS) depuis un CDN (pour les composants interactifs) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+{% endblock %}
+
+
+
+
+
