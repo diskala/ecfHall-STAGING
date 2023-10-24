@@ -7,12 +7,37 @@
      {{ include('_partials/header.html.twig') }}
      {{ include('_partials/navbar.html.twig') }}
      
-        {# {{ form_start(searchForm) }}
-         {{ form_widget(searchForm.motCles) }}
-         <button type="submit" class="btn btn-primary btn-block mt-2">Recherche</button>
+         
 
-        {{ form_end(searchForm) }}
-      #}
+ <div class="row">
+            {# <div class="col-9"> #}
+            <div class="form-holder ">
+              
+                <div class="form-content ">
+                    <div class="form-items ">
+                         
+                           {{ form_start(searchForm) }}
+
+                            <div class="col-3 ">
+                            
+                                     {{ form_row(searchForm.motCles) }}
+                                      
+                                 
+                            </div>
+
+                             <div class="col-3">
+                                     {{ form_row(searchForm.capacity) }}
+                                 
+                            </div>
+                    
+                    </div>   
+                </div>
+                    <button class="btn btn-primary">Recherche</button>
+            </div>
+        {# </div> #}
+    </div>
+  {{ form_end(searchForm) }}
+
 
         <!-- Page Content-->
         <div class="container">
@@ -20,7 +45,11 @@
                 <div class="col-8">
                     <div class="text-center">
                         <h1> Liste des salles </h1>
+                        
                     </div>
+                      
+                                
+                               
                     <div class="row">
                     {% for item in aRooms %}
                     <div class="col-md-6 mb-4">

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Optional;
 use App\Entity\Room;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -57,19 +58,44 @@ class RoomRepository extends ServiceEntityRepository
    }
 
 
-   public function searching($mots)
+   public function searching($mots= null)
    {
+     
        $query= $this->createQueryBuilder('r');
-       
+        
        if($mots != null)
        {
+        
         $query->andWhere('MATCH_AGAINST(r.name, r.address) AGAINST(:mots BOOLEAN)>0')
         ->setParameter('mots', $mots );
+        
+
        }
+
 
        return $query->getQuery()->getResult();
 
    }
+
+
+
+   public function capacitie($capacity)
+   {
+    if($capacity != null)
+    {
+        $query= $this->createQueryBuilder('r');
+     $query->andWhere('r.capacity> :cap')
+        ->setParameter('cap', $capacity)
+        ->orderBy('r.name');
+        // dd($query->getDQL());
+
+    }
+
+    return $query->getQuery()->getResult();
+
+   }
+
+
 
 
 }
