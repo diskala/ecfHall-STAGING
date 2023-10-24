@@ -28,7 +28,9 @@
                             {{ opt.type.name }} :
                             {% set typeOpt = opt.type.name %}
                         {% endif %}
-                        <li><span>{{opt.name}}</span> : {{ opt.description }}</li>
+
+                        <li>{{opt.name}}: {{ opt.description }}</li>
+
                     {% endfor %}
                     </div>
                 </div>
