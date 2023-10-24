@@ -17,18 +17,21 @@
                 <span class="input-group-text" id="basic-addon1">@</span>
                 <input name="email" type="text" class="form-control" value={{app.user.email}} aria-label="Username" aria-describedby="basic-addon1" disabled>
             </div>
-            {% if roomOptions %}
+            {% if room.optionals %}
                 <div class="mb-2 text-start">
                     <span class="form-label">Options de la salle</span>
+                    <div class="border border-primary rounded p-1">
+                    {% set typeOpt = '' %}
+                    {% for opt in room.optionals %}
+                        {% if opt.type.name != typeOpt %}
+        
+                            {{ opt.type.name }} :
+                            {% set typeOpt = opt.type.name %}
+                        {% endif %}
+                        <li><span>{{opt.name}}</span> : {{ opt.description }}</li>
+                    {% endfor %}
+                    </div>
                 </div>
-                {% set typeOpt = '' %}
-                {% for opt in roomOptions %}
-                    {% if opt.type.name != typeOpt %}
-                        {{ opt.type.name }} :
-                        {% set typeOpt = opt.type.name %}
-                    {% endif %}
-                        <li test-start ><span>{{opt.name}}</span> : {{ opt.description }}</li>
-                {% endfor %}
             {% endif %}
         </div>
         <div class="col-4">

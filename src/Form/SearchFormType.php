@@ -18,7 +18,7 @@ class SearchFormType extends AbstractType
                 'label'=> false,
                 'attr'=>[
                     'class'=>'form-control',
-                    'placeholder'=>'Entrez un Mots clès'
+                    'placeholder'=>'Entrez un Mot Clé'
                 ]
 
             ])

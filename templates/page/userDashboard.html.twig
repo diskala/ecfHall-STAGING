@@ -9,7 +9,7 @@
      
         {{ form_start(searchForm) }}
          {{ form_widget(searchForm.motCles) }}
-         <button type="submit" class="btn btn-primary btn-block">Recherche</button>
+         <button type="submit" class="btn btn-primary btn-block mt-2">Recherche</button>
         {{ form_end(searchForm) }}
      
         <!-- Page Content-->
@@ -27,7 +27,17 @@
                                 <div class="card-body">
                                     <h2 class="card-title mb-4">{{ item.name|capitalize }} - {{ item.capacity }} p.</h2>
                                     <div class="mt-4"><img id="page" class="img-fluid rounded mb-4 mb-lg-0" src={{ item.picture }} alt="..." min-width="70%" max-height="70%" /></div>
-                                    <p class="card-text mt-2">{{ item. address }}</p>
+                                    <p class="card-text mt-2">{{ item.address }}</p>
+                                    {% if item.optionals %}
+                                        {% set type = "" %}
+                                        {% for opt in item.optionals %}
+                                            {% if opt.type != type %}
+                                                <div class="text-start">{{ opt.type }}:</div>
+                                                {% set type = opt.type %}
+                                            {% endif %}
+                                            <li class="text-start">{{ opt.name }}</li>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="{{ path('app_booking_addBooking', { "id": item.id }) }}">Pré-réserver</a></div>
                             </div>    

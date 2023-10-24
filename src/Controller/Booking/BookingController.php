@@ -110,7 +110,7 @@ class BookingController extends AbstractController
         //Find a room by id
         $room =$this->roomRepository->findOneBy(['id' => $id]);
 
-        $roomOptions = $this->optionalRepository->findOptionsByRoom($room);
+        // $roomOptions = $this->optionalRepository->findOptionsByRoom($room);
         
         //Find all bookings for this room 
         //with status = 'Réservée' or 'Pré-réservée'
@@ -165,7 +165,7 @@ class BookingController extends AbstractController
             'bookingForm' => $bookingForm->createView(),
             'room' => $room,
             'bookings' => $bookingsOthers,
-            'roomOptions' => $roomOptions,
+            // 'roomOptions' => $roomOptions,
         ]);
     }
 
