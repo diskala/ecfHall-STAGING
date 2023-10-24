@@ -53,7 +53,8 @@ class RoomCrudController extends AbstractCrudController
         return [
             IdField::new('id'),
 
-            ImageField::new('picture')->setUploadDir('public/images/')->setUploadedFileNamePattern(
+            ImageField::new('picture')
+            ->setUploadDir('public/images/')->setUploadedFileNamePattern(
                 fn (UploadedFile $file): string => sprintf('/images/salle_%s', 
                 random_int(21, 999), $file->getFilename(), $file->guessExtension())),
 
